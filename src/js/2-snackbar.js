@@ -15,27 +15,18 @@ function handleSubmit(event) {
 
   const delayInMilliseconds = parseInt(delay);
 
-//   const promise = new Promise((resolve, reject) => {
-//     if (state === 'fulfilled') {
-//       setTimeout(() => {
-//         resolve(delayInMilliseconds);
-//       }, delayInMilliseconds);
-//     } else {
-//       setTimeout(() => {
-//       reject(delayInMilliseconds);
-//     }, delayInMilliseconds);
-//   }
-// });
-
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
+  const promise = new Promise((resolve, reject) => {
     if (state === 'fulfilled') {
-      resolve(delayInMilliseconds);
+      setTimeout(() => {
+        resolve(delayInMilliseconds);
+      }, delayInMilliseconds);
     } else {
+      setTimeout(() => {
       reject(delayInMilliseconds);
-    }
-  }, delayInMilliseconds);
+    }, delayInMilliseconds);
+  }
 });
+
 
   promise.then(
     (delay) => {
@@ -47,16 +38,15 @@ const promise = new Promise((resolve, reject) => {
              position: 'topCenter',
              progressBar: false,
            });
-    },
-    (delay) => {
-        iziToast.show(
-            {message: `❌ Rejected promise in ${delay}ms`,
-             messageColor: 'white',
-             color: 'red',
-             theme: 'dark',
-             position: 'topCenter',
-             progressBar: false,
-           });
-    }
-  );
+    }  
+  ).catch((delay) => {
+    iziToast.show(
+        {message: `❌ Rejected promise in ${delay}ms`,
+         messageColor: 'white',
+         color: 'red',
+         theme: 'dark',
+         position: 'topCenter',
+         progressBar: false,
+       });
+});
 }
