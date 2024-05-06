@@ -21,9 +21,11 @@ function handleSubmit(event) {
         resolve(delayInMilliseconds);
       }, delayInMilliseconds);
     } else {
+      setTimeout(() => {
       reject(delayInMilliseconds);
-    }
-  });
+    }, delayInMilliseconds);
+  }
+});
 
   promise.then(
     (delay) => {
