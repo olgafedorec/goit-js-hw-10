@@ -15,16 +15,26 @@ function handleSubmit(event) {
 
   const delayInMilliseconds = parseInt(delay);
 
-  const promise = new Promise((resolve, reject) => {
+//   const promise = new Promise((resolve, reject) => {
+//     if (state === 'fulfilled') {
+//       setTimeout(() => {
+//         resolve(delayInMilliseconds);
+//       }, delayInMilliseconds);
+//     } else {
+//       setTimeout(() => {
+//       reject(delayInMilliseconds);
+//     }, delayInMilliseconds);
+//   }
+// });
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
     if (state === 'fulfilled') {
-      setTimeout(() => {
-        resolve(delayInMilliseconds);
-      }, delayInMilliseconds);
+      resolve(delayInMilliseconds);
     } else {
-      setTimeout(() => {
       reject(delayInMilliseconds);
-    }, delayInMilliseconds);
-  }
+    }
+  }, delayInMilliseconds);
 });
 
   promise.then(
